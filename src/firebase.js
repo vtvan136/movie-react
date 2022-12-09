@@ -7,12 +7,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD7u6PETdAs34ASN2o66o4JEWzEMZxws4o",
-  authDomain: "movie-clone-e0c24.firebaseapp.com",
-  projectId: "movie-clone-e0c24",
-  storageBucket: "movie-clone-e0c24.appspot.com",
-  messagingSenderId: "364064954508",
-  appId: "1:364064954508:web:dee3f82c6d3619bb3203a9"
+  apiKey: "AIzaSyBFwB9rIrEWq-g277sEcDRsSLqbdbXFYjU",
+  authDomain: "movie-react-dd74b.firebaseapp.com",
+  projectId: "movie-react-dd74b",
+  storageBucket: "movie-react-dd74b.appspot.com",
+  messagingSenderId: "393252992236",
+  appId: "1:393252992236:web:fbe4737d87716f0c41a1c9"
 };
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
