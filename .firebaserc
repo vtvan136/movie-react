@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "movie-react-25a54",
+    "Y": "netfix-clone-7d509",
+    "build": "movie-react-25a54"
+  },
+  "targets": {},
+  "etags": {}
+}
