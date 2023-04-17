@@ -1,18 +1,15 @@
-
-import { data } from "autoprefixer";
-import axios from "axios";
 import {  useState, React, useEffect } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import requests from "../Requests";
+
 
 const SaveMovie = ({ title, rowID }) => {
   
   const [movies,setMovies] = useState();
   useEffect(()=>{
-    axios.get(requests.getListmovie).then((data) =>{
-      setMovies(data.data)
-    })
-  },[requests.getListmovie])
+    const movie =JSON.parse(localStorage.getItem('movie_list'))
+    setMovies(movie )
+  },[localStorage.getItem('movie_list')])
+  //setMovies(localStorage.getItem('movie_list'))
   const slideLeft = () => {
     var slider = document.getElementById("slider" + rowID);
     slider.scrollLeft = slider.scrollLeft - 500;
@@ -23,8 +20,8 @@ const SaveMovie = ({ title, rowID }) => {
   };
   return (
     
-    <div className="group mb-8">
-       {movies ?(<div>
+    <div className="group mb-8 ">
+       {movies && <div>
       <h2 className="text-white font-bold md:text-xl p-4 flex items-center outline-white">
         {title}
       </h2>
@@ -40,9 +37,9 @@ const SaveMovie = ({ title, rowID }) => {
           id={"slider" + rowID}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
-          {movies.map((item, id) => (
+          {movies.map(item => (
             <div
-              key={id}
+              key={item.id}
               className="w-[160px]  sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
             >
               <img
@@ -59,7 +56,7 @@ const SaveMovie = ({ title, rowID }) => {
           size={60}
           style={{ fill: "white" }}
         />
-      </div></div>):(<></>)}
+      </div></div>}
     </div>
   );
 };

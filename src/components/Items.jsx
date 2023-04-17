@@ -5,20 +5,21 @@ import { useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import requests from "../Requests";
-
+import { useDispatch } from "react-redux";
+import { watch_movie } from "../redux/actions";
 const Item = () => {
   const watchMovie = useSelector((state) => state.watchMovie.item);
+  const dispatch = useDispatch();
+  const [playing, setPlaying] = useState(false);
   const [like, setLike] = useState(false);
   const [data, setData] = useState({
     id_movie: 0,
-    id_user: "U91Bv7bj5cdqDE4Wi6JNl6GjV1R2",
+    id_user: "U91Bv7bj5.idcdqDE4Wi6JNl6GjV1R2",
     title: "",
     poster_path: "",
   });
-  console.log(data);
   const { user } = UserAuth();
-  const saveShow = () => {
+  const saveShow = (e) => {
     if (user?.email) {
       setData({
         id_movie: watchMovie.id,
@@ -26,13 +27,14 @@ const Item = () => {
         title: watchMovie.title,
         poster_path: watchMovie.poster_path,
       });
-      axios
+      //console.log(data)
+      /*axios
         .post(requests.postMovie, 
           data)
         .then((res) => {
           console.log(res);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error));*/
       setLike(true);
     } else {
       alert("Please log in to save a movie");
@@ -51,13 +53,12 @@ const Item = () => {
     }
   };
 
-  const [playing, setPlaying] = useState(false);
   const selectMovie = () => {
     if (watchMovie) {
       fetchMovie(watchMovie.id);
     }
   };
-  
+
   return (
     <div
       id="movie"
@@ -69,6 +70,8 @@ const Item = () => {
             setLike(false);
             setPlaying(false);
             document.getElementById("movie").style.display = "none";
+            dispatch(watch_movie({ item: {}, id: "" }));
+
             if (document.getElementById("view").style.display === "block") {
               return;
             } else {
@@ -121,7 +124,11 @@ const Item = () => {
                 Play
               </button>
               <button
-                onClick={saveShow}
+                onClick={() => {
+                  var movie_list = JSON.parse(localStorage.getItem("movie_list")) || [];
+                  movie_list.push(watchMovie);
+                  localStorage.setItem("movie_list", JSON.stringify(movie_list));
+                }}
                 className="bg-black/50 hover:bg-black/70 hover:border-gray-100 px-[6px] border-gray-500 border-2 rounded-[50%]"
               >
                 {!like ? (

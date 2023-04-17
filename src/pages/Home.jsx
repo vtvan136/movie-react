@@ -9,6 +9,7 @@ import requests from "../Requests";
 
 const Home = () => {
   const {user} = UserAuth()
+  /**/ 
   return (
     <>
       <List />
@@ -19,8 +20,7 @@ const Home = () => {
       <Row title="Top Rating" rowID="3" fetchURL={requests.requestTopRated} />
       <Row title="Popular" rowID="4" fetchURL={requests.requestPopular} />
       <Row title="Horror" rowID="5" fetchURL={requests.requestHorror} />
-      {user?.email ? (<SaveMovie title="Saved Movie" rowID="6"/>):(<div></div>)}
-      
+      {user?.email  && (<SaveMovie title="Saved Movie" rowID="6"/>)}
     </>
   );
 };

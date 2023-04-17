@@ -22,6 +22,7 @@ const Row = ({ title, fetchURL, rowID }) => {
     dispatch(show_list({ titles, urls }));
     document.body.style.overflow = "hidden";
     document.getElementById("view").style.display = "block";
+    document.getElementById("movie").style.display = "none";
   };
 
   const dispatch = useDispatch();
@@ -33,7 +34,6 @@ const Row = ({ title, fetchURL, rowID }) => {
     });
   }, [fetchURL]);
   
-
   return (
     <div className="group mb-8">
       <h2 className="text-white font-bold md:text-xl p-4 flex items-center outline-white">

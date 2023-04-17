@@ -15,16 +15,21 @@ const Login = () => {
       alert(error);
     }
   };
+  const style={
+    auth :"w-full h-screen",
+    img:"hidden  sm:block absolute w-full h-full object-cover",
+    filter: "bg-black/60 fixed top-0 left-0 w-full h-screen",
+    content:"fixed w-full px-4 py-24 z-50"
+  }
   return (
-    <>
-      <div className="w-full h-screen">
+      <div className={style.auth}>
         <img
-          className=" hidden  sm:block absolute w-full h-full object-cover"
+          className={style.img}
           src="https://assets.nflxext.com/ffe/siteui/vlv3/908077b4-cf0a-43c3-b2c9-435fb990299b/2e21f5ae-4f34-47da-80fb-bf55bc06a297/VN-en-20220829-popsignuptwoweeks-perspective_alpha_website_large.jpg"
           alt="/"
         />
-        <div className="bg-black/60 fixed top-0 left-0 w-full h-screen"></div>
-        <div className="fixed w-full px-4 py-24 z-50">
+        <div className={style.filter}></div>
+        <div className={style.content}>
           <div className=" max-w-[450px] h-[600px] mx-auto rounded-md bg-black/60 text-white">
             <div className="max-w-[320px] mx-auto py-16">
               <h1 className="text-3xl font-bold">Sign In</h1>
@@ -69,7 +74,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
